@@ -1,0 +1,8 @@
+dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dwh.duckdb
+      schema: main
+      threads: 4

@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+dbt-env/
+airflow-env/
+dbt/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# Local databases
+*.duckdb
+
+# Airflow / runtime
+airflow_home/
+airflow.db
+logs/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Secrets / env
+.env
+*.env

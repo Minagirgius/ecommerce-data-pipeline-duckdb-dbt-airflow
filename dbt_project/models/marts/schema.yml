@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimension table containing customer details and summary order activity."
+    columns:
+      - name: customer_id
+        description: "Unique business identifier for each customer."
+        tests:
+          - not_null
+          - unique
+      - name: first_name
+        description: "Customer first name."
+      - name: last_name
+        description: "Customer last name."
+      - name: first_order_date
+        description: "Date of the customer's first recorded order."
+      - name: most_recent_order_date
+        description: "Date of the customer's most recent recorded order."
+      - name: number_of_orders
+        description: "Total number of orders placed by the customer."
+
+  - name: dim_payments
+    description: "Dimension-style table containing payment transactions enriched for downstream reporting."
+    columns:
+      - name: payment_id
+        description: "Unique identifier for each payment."
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: "Identifier of the order associated with the payment."
+        tests:
+          - not_null
+      - name: payment_method
+        description: "Method used to complete the payment."
+      - name: amount_usd
+        description: "Payment amount in USD."
+
+  - name: fact_orders
+    description: "Fact table containing order-level records enriched with total payment amount."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order."
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Identifier of the customer who placed the order."
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date when the order was placed."
+      - name: order_status
+        description: "Current status of the order."
+      - name: total_amount_usd
+        description: "Total amount paid for the order aggregated from payment records."

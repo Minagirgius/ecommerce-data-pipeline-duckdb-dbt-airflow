@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Staging model for raw orders after renaming columns and standardizing data types."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order."
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Identifier of the customer who placed the order."
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date when the order was placed."
+        tests:
+          - not_null
+      - name: order_status
+        description: "Current status of the order from the source system."
+
+  - name: stg_payments
+    description: "Staging model for raw payments after renaming fields and converting the amount to USD."
+    columns:
+      - name: payment_id
+        description: "Unique identifier for each payment transaction."
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: "Identifier of the order associated with the payment."
+        tests:
+          - not_null
+      - name: payment_method
+        description: "Payment method used for the transaction."
+      - name: amount_usd
+        description: "Payment amount in USD after converting the raw amount from cents."
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: "Staging model for customer records after cleaning and standardizing customer attributes."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer."
+        tests:
+          - not_null
+          - unique
+      - name: first_name
+        description: "Customer first name."
+      - name: last_name
+        description: "Customer last name."

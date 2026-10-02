@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: ods
+    description: "Operational data store layer containing raw ingested source tables in DuckDB."
+    tables:
+      - name: raw_orders
+        description: "Raw order records loaded from the source system."
+      - name: raw_payments
+        description: "Raw payment transaction records loaded from the source system."
+      - name: raw_customers
+        description: "Raw customer records loaded from the source system."
